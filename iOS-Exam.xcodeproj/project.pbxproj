@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		DCFA9CAA2A803B1A0074B3A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CA92A803B1A0074B3A5 /* AppDelegate.swift */; };
-		DCFA9CAC2A803B1A0074B3A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CAB2A803B1A0074B3A5 /* SceneDelegate.swift */; };
 		DCFA9CAE2A803B1A0074B3A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CAD2A803B1A0074B3A5 /* ViewController.swift */; };
 		DCFA9CB12A803B1A0074B3A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCFA9CAF2A803B1A0074B3A5 /* Main.storyboard */; };
 		DCFA9CB42A803B1A0074B3A5 /* iOS_Exam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CB22A803B1A0074B3A5 /* iOS_Exam.xcdatamodeld */; };
@@ -17,6 +16,10 @@
 		DCFA9CC42A803B1C0074B3A5 /* iOS_ExamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CC32A803B1C0074B3A5 /* iOS_ExamTests.swift */; };
 		DCFA9CCE2A803B1C0074B3A5 /* iOS_ExamUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CCD2A803B1C0074B3A5 /* iOS_ExamUITests.swift */; };
 		DCFA9CD02A803B1C0074B3A5 /* iOS_ExamUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CCF2A803B1C0074B3A5 /* iOS_ExamUITestsLaunchTests.swift */; };
+		DCFA9CDE2A803BB60074B3A5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CDD2A803BB60074B3A5 /* Persistence.swift */; };
+		DCFA9CE02A803BEA0074B3A5 /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CDF2A803BEA0074B3A5 /* PersistentStorage.swift */; };
+		DCFA9CE32A803C5D0074B3A5 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CE22A803C5D0074B3A5 /* Log.swift */; };
+		DCFA9CE72A803D3B0074B3A5 /* ManagedObjectContext+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFA9CE62A803D3B0074B3A5 /* ManagedObjectContext+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,6 @@
 /* Begin PBXFileReference section */
 		DCFA9CA62A803B1A0074B3A5 /* iOS-Exam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS-Exam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA9CA92A803B1A0074B3A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DCFA9CAB2A803B1A0074B3A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DCFA9CAD2A803B1A0074B3A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DCFA9CB02A803B1A0074B3A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCFA9CB32A803B1A0074B3A5 /* iOS_Exam.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS_Exam.xcdatamodel; sourceTree = "<group>"; };
@@ -51,6 +53,11 @@
 		DCFA9CC92A803B1C0074B3A5 /* iOS-ExamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS-ExamUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFA9CCD2A803B1C0074B3A5 /* iOS_ExamUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExamUITests.swift; sourceTree = "<group>"; };
 		DCFA9CCF2A803B1C0074B3A5 /* iOS_ExamUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_ExamUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DCFA9CDD2A803BB60074B3A5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		DCFA9CDF2A803BEA0074B3A5 /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
+		DCFA9CE22A803C5D0074B3A5 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		DCFA9CE42A803CCD0074B3A5 /* iOS-Exam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "iOS-Exam.entitlements"; sourceTree = "<group>"; };
+		DCFA9CE62A803D3B0074B3A5 /* ManagedObjectContext+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedObjectContext+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +108,11 @@
 		DCFA9CA82A803B1A0074B3A5 /* iOS-Exam */ = {
 			isa = PBXGroup;
 			children = (
+				DCFA9CE52A803D2E0074B3A5 /* Extensions */,
+				DCFA9CE42A803CCD0074B3A5 /* iOS-Exam.entitlements */,
+				DCFA9CE12A803C530074B3A5 /* Common */,
+				DCFA9CDC2A803BA30074B3A5 /* Persistence */,
 				DCFA9CA92A803B1A0074B3A5 /* AppDelegate.swift */,
-				DCFA9CAB2A803B1A0074B3A5 /* SceneDelegate.swift */,
 				DCFA9CAD2A803B1A0074B3A5 /* ViewController.swift */,
 				DCFA9CAF2A803B1A0074B3A5 /* Main.storyboard */,
 				DCFA9CB52A803B1B0074B3A5 /* Assets.xcassets */,
@@ -128,6 +138,31 @@
 				DCFA9CCF2A803B1C0074B3A5 /* iOS_ExamUITestsLaunchTests.swift */,
 			);
 			path = "iOS-ExamUITests";
+			sourceTree = "<group>";
+		};
+		DCFA9CDC2A803BA30074B3A5 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				DCFA9CDD2A803BB60074B3A5 /* Persistence.swift */,
+				DCFA9CDF2A803BEA0074B3A5 /* PersistentStorage.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		DCFA9CE12A803C530074B3A5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				DCFA9CE22A803C5D0074B3A5 /* Log.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		DCFA9CE52A803D2E0074B3A5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DCFA9CE62A803D3B0074B3A5 /* ManagedObjectContext+extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +297,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCFA9CAE2A803B1A0074B3A5 /* ViewController.swift in Sources */,
+				DCFA9CDE2A803BB60074B3A5 /* Persistence.swift in Sources */,
+				DCFA9CE32A803C5D0074B3A5 /* Log.swift in Sources */,
 				DCFA9CAA2A803B1A0074B3A5 /* AppDelegate.swift in Sources */,
+				DCFA9CE72A803D3B0074B3A5 /* ManagedObjectContext+extension.swift in Sources */,
+				DCFA9CE02A803BEA0074B3A5 /* PersistentStorage.swift in Sources */,
 				DCFA9CB42A803B1A0074B3A5 /* iOS_Exam.xcdatamodeld in Sources */,
-				DCFA9CAC2A803B1A0074B3A5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,8 +477,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iOS-Exam/iOS-Exam.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RPBNTY9AZ9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Exam/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -466,8 +506,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "iOS-Exam/iOS-Exam.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RPBNTY9AZ9;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Exam/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
