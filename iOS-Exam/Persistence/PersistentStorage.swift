@@ -8,37 +8,22 @@
 import Foundation
 import CoreData
 
-class PersistentStorage: NSObject {
-    static let shared = PersistentStorage()
+class PersistentStorage {
     // MARK: - Core Data stack
-    lazy var persistentContainer: NSPersistentContainer = {
-        return createPersistentContainer()
-    }()
+    var persistentContainer: NSPersistentContainer!
+    var context: NSManagedObjectContext!
     
-    lazy var context: NSManagedObjectContext = {
-        let managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        managedContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
-        
-        return managedContext
-    }()
-    
-    func newPrivateContext() -> NSManagedObjectContext {
-        let context = persistentContainer.newBackgroundContext()
-        context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-        context.automaticallyMergesChangesFromParent = true
-        
-        return context
+    init() {
+        bootstrap()
     }
     
-    func createPersistentContainer() -> NSPersistentContainer {
-        let container = NSPersistentContainer(name: "ios-exam")
-        let storeURL = storeURL(for: "group.com.ios-exam", databaseName: "ios-exam")
-        let storeDescription = NSPersistentStoreDescription(url: storeURL)
-        storeDescription.shouldMigrateStoreAutomatically = true
-        storeDescription.shouldInferMappingModelAutomatically = true
-        container.persistentStoreDescriptions = [storeDescription]
-        
+    private func bootstrap() {
+        self.persistentContainer = createPersistentContainer()
+        self.context = createContext()
+    }
+    
+    private func createPersistentContainer() -> NSPersistentContainer {
+        let container = NSPersistentContainer(name: Constants.dbName)
         // For light weight core data migration
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as? NSError {
@@ -47,6 +32,22 @@ class PersistentStorage: NSObject {
         })
         
         return container
+    }
+    
+    private func createContext() -> NSManagedObjectContext {
+        let managedContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        managedContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        
+        return managedContext
+    }
+    
+    func newPrivateContext() -> NSManagedObjectContext {
+        let context = persistentContainer.newBackgroundContext()
+        context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+        context.automaticallyMergesChangesFromParent = true
+        
+        return context
     }
     
     func removeAllObjectOfEntity(_ entity: String) {
@@ -61,15 +62,4 @@ class PersistentStorage: NSObject {
         }
     }
     
-    private override init() {
-        super.init()
-    }
-    
-    private func storeURL(for appGroup: String, databaseName: String) -> URL {
-        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-            fatalError("Shared file container could not be created.")
-        }
-
-        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
-    }
 }

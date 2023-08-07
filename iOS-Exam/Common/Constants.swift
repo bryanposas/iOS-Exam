@@ -9,4 +9,5 @@ import Foundation
 
 class Constants {
     static let tmdbImageBaseUrl = "https://image.tmdb.org/t/p/w500"
+    static let dbName = "iOS_Exam"
 }

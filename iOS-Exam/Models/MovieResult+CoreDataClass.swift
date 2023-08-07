@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(MovieResult)
 public class MovieResult: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -17,7 +18,9 @@ public class MovieResult: NSManagedObject, Codable {
     
     required convenience public init(from decoder: Decoder) throws {
         // return the context from the decoder userinfo dictionary
-        guard let entity = NSEntityDescription.entity(forEntityName: "MovieResult", in: PersistentStorage.shared.context)
+        guard let contextUserInfoKey = CodingUserInfoKey.context,
+              let context = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
+              let entity = NSEntityDescription.entity(forEntityName: "MovieResult", in: context)
             else {
                 self.init()
                 return
@@ -31,7 +34,7 @@ public class MovieResult: NSManagedObject, Codable {
             page = try container.decodeIfPresent(Int32.self, forKey: .page) ?? 0
             totalPages = try container.decodeIfPresent(Int32.self, forKey: .total_pages) ?? 0
             totalResults = try container.decodeIfPresent(Int64.self, forKey: .total_results) ?? 0
-            movies = NSOrderedSet(array: (try? container.decode([Movie].self, forKey: .results)) ?? [])
+            movies = NSOrderedSet(array: try container.decode([Movie].self, forKey: .results))
         } catch let error {
             print(error.localizedDescription)
         }

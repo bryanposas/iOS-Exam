@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(Movie)
 public class Movie: NSManagedObject, Codable {
 
     enum CodingKeys: CodingKey {
@@ -41,7 +42,9 @@ public class Movie: NSManagedObject, Codable {
     
     required convenience public init(from decoder: Decoder) throws {
         // return the context from the decoder userinfo dictionary
-        guard let entity = NSEntityDescription.entity(forEntityName: "Movie", in: PersistentStorage.shared.context)
+        guard let contextUserInfoKey = CodingUserInfoKey.context,
+              let context = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
+              let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context)
             else {
                 self.init()
                 return

@@ -6,18 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-class ParserType {
-    typealias ModelType = Any
-
-    required init() {}
-    
-    func parse(_ data: Data?) throws -> ModelType? {
-        return nil
-    }
-}
-
-class SimpleJSONParser<T: Codable>: ParserType {
+class SimpleJSONParser<T: Codable> {
     public typealias ModelType = T
     private let jsonDecoder: JSONDecoder
 
@@ -29,11 +20,11 @@ class SimpleJSONParser<T: Codable>: ParserType {
         self.jsonDecoder = JSONDecoder()
     }
     
-    override func parse(_ data: Data?) throws -> ParserType.ModelType? {
+    func parse(_ data: Data?, inContext context: NSManagedObjectContext) throws -> ModelType? {
         guard let data = data else { return nil }
         let isCodable = (T.self as Any) is Codable.Type
         if !isCodable { return nil }
-        let response = try jsonDecoder.decodeWithContext(T.self, from: data)
+        let response = try jsonDecoder.decodeWithContext(T.self, from: data, context: context)
         return response
     }
 }

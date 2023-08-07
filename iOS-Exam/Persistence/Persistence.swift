@@ -10,63 +10,19 @@ import CoreData
 
 typealias T = NSManagedObject
 
-class CoreDataClass: NSObject {
-    lazy var persistentContainer: NSPersistentContainer = {
-        return PersistentStorage.shared.persistentContainer
-    }()
+class Persistence: NSObject {
+    private let persistentStorage: PersistentStorage!
     
-    lazy var context: NSManagedObjectContext = {
-        return PersistentStorage.shared.context
-    }()
-    
-    func saveContext() {
-        if context.hasChanges {
-            context.performAndWait {
-                do {
-                    try context.save()
-                } catch let error as NSError {
-                    printLog(error)
-                    NotificationCenter.default.post(name: Notification.Name("locate2uCoreDataSaveContextError"), object: "Coredata error \(error), \(error.userInfo)")
-                }
-            }
-        }
+    init(persistentStorage: PersistentStorage) {
+        self.persistentStorage = persistentStorage
     }
     
-    func newPrivateContext() -> NSManagedObjectContext {
-        return PersistentStorage.shared.newPrivateContext()
+    var context: NSManagedObjectContext {
+        return persistentStorage.context
     }
     
-    func fetch<T: NSManagedObject>(_ type : T.Type, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil, isSingleResult: Bool = false, isPrivateContext: Bool = true) -> [T] {
-        let request = T.fetchRequest()
-        if let predicate = predicate {
-            request.predicate = predicate
-        }
-        if let sortDescriptors = sortDescriptors {
-            request.sortDescriptors = sortDescriptors
-        }
-        if isSingleResult {
-            request.fetchLimit = 1
-        }
-        
-        var results: [T] = []
-        if isPrivateContext {
-            let newPrivateContext = newPrivateContext()
-            newPrivateContext.performAndWait {
-                do {
-                    results = try newPrivateContext.fetch(request) as? [T] ?? []
-                } catch let error {
-                    printLog(error.localizedDescription)
-                }
-            }
-        } else {
-            do {
-                results = try context.fetchObjects(request) as? [T] ?? []
-            } catch let error {
-                printLog(error.localizedDescription)
-            }
-        }
-        
-        return results
+    var persistentContainer: NSPersistentContainer {
+        return persistentStorage.persistentContainer
     }
     
     /// Save changes to core data store
@@ -143,7 +99,7 @@ class CoreDataClass: NSObject {
         context.performAndWait {
             do {
                 context.delete(object)
-                try context.update()
+                try context.save()
             } catch let error {
                 printLog(error.localizedDescription)
             }

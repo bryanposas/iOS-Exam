@@ -8,15 +8,25 @@
 import Foundation
 import Bond
 
-class HomeViewModel {
+class BaseViewModel: NSObject {
+    weak var coordinator: CoordinatorProtocol?
+    
+    init(coordinator: CoordinatorProtocol) {
+        self.coordinator = coordinator
+    }
+}
+
+class HomeViewModel: BaseViewModel {
     let omdbData: OmdbDataProtocol
     var tblViewDataSource: UITableViewDataSource?
     var tblViewDelegate: UITableViewDelegate?
     
     let movieResult = Observable<MovieResult?>(nil)
     
-    init(with omdbData: OmdbDataProtocol) {
+    init(with omdbData: OmdbDataProtocol, coordinator: CoordinatorProtocol) {
         self.omdbData = omdbData
+        
+        super.init(coordinator: coordinator)
     }
     
     func getMovies() {

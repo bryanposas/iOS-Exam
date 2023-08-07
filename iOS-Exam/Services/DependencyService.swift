@@ -13,9 +13,16 @@ import SwinjectStoryboard
 class DependencyService: NSObject {
     private let container = Container()
     
-    // MARK: The order for which each classes are instantiated is highly important. Take good care when adding a new dependency to a class that that dependency will be instantiated first before the class that needs said dependency or when adding a new class that all of its dependencies are isntantiated first before instantiating said class in this function. Otherwise, you will encounter a circular dependency crash.
+    var resolver: Container {
+        return container
+    }
+    
     func start() {
-        container.autoregister(OmdbDataProtocol.self, initializer: OmdbData.init)
+        container.autoregister(PersistentStorage.self, initializer: PersistentStorage.init).inObjectScope(.container)
+        container.autoregister(Persistence.self, initializer: Persistence.init).inObjectScope(.container)
+        container.autoregister(CoordinatorProtocol.self, initializer: Coordinator.init).inObjectScope(.container)
+        
+        container.autoregister(OmdbDataProtocol.self, initializer: OmdbData.init).inObjectScope(.container)
         
         registerViewControllerAndViewModel()
     }
@@ -26,7 +33,7 @@ class DependencyService: NSObject {
     
     private func registerHomeViewModel() {
         container.autoregister(HomeViewModel.self, initializer: { (resolver) -> HomeViewModel in
-            return HomeViewModel(with: self.container.resolve(OmdbDataProtocol.self)!)
+            return HomeViewModel(with: self.container.resolve(OmdbDataProtocol.self)!, coordinator: self.container.resolve(CoordinatorProtocol.self)!)
         })
     }
     

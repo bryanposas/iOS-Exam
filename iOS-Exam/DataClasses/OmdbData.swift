@@ -13,7 +13,7 @@ protocol OmdbDataProtocol {
     func getMovies(completionBlock: @escaping OmdbDataCompletion)
 }
 
-class OmdbData: OmdbDataProtocol {
+class OmdbData: BaseData, OmdbDataProtocol {
     func getMovies(completionBlock: @escaping OmdbDataCompletion) {
         let headers = [
             "accept": "application/json",
@@ -57,7 +57,7 @@ class OmdbData: OmdbDataProtocol {
     
     private func parseResponse(_ data: Data?) -> MovieResult? {
         do {
-            guard let data = data, let movieResult = try SimpleJSONParser<MovieResult>().parse(data) as? MovieResult else { return nil }
+            guard let data = data, let movieResult = try SimpleJSONParser<MovieResult>().parse(data, inContext: persistence.context) else { return nil }
             return movieResult
         } catch {
             printLog(error.localizedDescription)

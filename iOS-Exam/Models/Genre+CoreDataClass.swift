@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(Genre)
 public class Genre: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -16,7 +17,9 @@ public class Genre: NSManagedObject, Codable {
     
     required convenience public init(from decoder: Decoder) throws {
         // return the context from the decoder userinfo dictionary
-        guard let entity = NSEntityDescription.entity(forEntityName: "Genre", in: PersistentStorage.shared.context)
+        guard let contextUserInfoKey = CodingUserInfoKey.context,
+              let context = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
+              let entity = NSEntityDescription.entity(forEntityName: "Genre", in: context)
             else {
                 self.init()
                 return
