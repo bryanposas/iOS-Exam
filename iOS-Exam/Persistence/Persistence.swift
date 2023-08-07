@@ -36,7 +36,6 @@ class CoreDataClass: NSObject {
         return PersistentStorage.shared.newPrivateContext()
     }
     
-    // MARK: Refactor whole core data class to use this generic function for fetching to significant reduce the lines of code
     func fetch<T: NSManagedObject>(_ type : T.Type, predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor]? = nil, isSingleResult: Bool = false, isPrivateContext: Bool = true) -> [T] {
         let request = T.fetchRequest()
         if let predicate = predicate {
@@ -70,17 +69,22 @@ class CoreDataClass: NSObject {
         return results
     }
     
+    /// Save changes to core data store
     func saveObject(_ object: NSManagedObject) {
         guard let context = object.managedObjectContext else { return }
-        context.perform {
-            do {
-                try context.save()
-            } catch let error {
-                printLog(error.localizedDescription)
+        
+        if context.hasChanges {
+            context.performAndWait {
+                do {
+                    try context.save()
+                } catch let error as NSError {
+                    printLog(error)
+                }
             }
         }
     }
     
+    /// Delete all entries inside of core data store
     func deleteAll(of entity: String) {
         // Specify a batch to delete with a fetch request
         let fetchRequest: NSFetchRequest<NSFetchRequestResult>

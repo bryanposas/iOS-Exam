@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fuP-bc-0Dy">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="iOS_Exam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0O-Ia-8HQ">
+                                <rect key="frame" x="0.0" y="814" width="414" height="82"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="hxk-Ao-6UR">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSp-56-APj">
+                                                <rect key="frame" x="0.0" y="0.0" width="136.5" height="82"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8I-Pe-Xre">
+                                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="82"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Movies" imagePadding="10">
+                                                            <imageReference key="image" image="film" catalog="system" renderingMode="template"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="btnMovies:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SGv-gu-5Yg"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="u8I-Pe-Xre" secondAttribute="trailing" id="RNj-w6-0fm"/>
+                                                    <constraint firstItem="u8I-Pe-Xre" firstAttribute="top" secondItem="KSp-56-APj" secondAttribute="top" id="SQU-Gg-JCK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="u8I-Pe-Xre" secondAttribute="bottom" id="lO8-EM-IW1"/>
+                                                    <constraint firstItem="u8I-Pe-Xre" firstAttribute="leading" secondItem="KSp-56-APj" secondAttribute="leading" id="n5Z-Oj-Y1b"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g5-Pb-28u">
+                                                <rect key="frame" x="138.5" y="0.0" width="137" height="82"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyK-sO-eYT">
+                                                        <rect key="frame" x="0.0" y="0.0" width="137" height="82"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="tv" catalog="system" imagePlacement="top" title="Series" imagePadding="10">
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="btnSeries:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GJb-Hc-tff"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="AyK-sO-eYT" secondAttribute="bottom" id="3U4-7E-u53"/>
+                                                    <constraint firstItem="AyK-sO-eYT" firstAttribute="leading" secondItem="1g5-Pb-28u" secondAttribute="leading" id="6tL-Fe-cS5"/>
+                                                    <constraint firstItem="AyK-sO-eYT" firstAttribute="top" secondItem="1g5-Pb-28u" secondAttribute="top" id="tGJ-tp-waE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="AyK-sO-eYT" secondAttribute="trailing" id="y5v-wA-LF6"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5L1-FW-r7V">
+                                                <rect key="frame" x="277.5" y="0.0" width="136.5" height="82"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiZ-hg-pZo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="136.5" height="82"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" imagePlacement="top" title="Episodes" imagePadding="10">
+                                                            <imageReference key="image" image="play.tv" catalog="system" variableValue="0.0"/>
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="btnEpisodes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5oT-d0-vjh"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="qiZ-hg-pZo" secondAttribute="bottom" id="QQU-Bb-asH"/>
+                                                    <constraint firstItem="qiZ-hg-pZo" firstAttribute="leading" secondItem="5L1-FW-r7V" secondAttribute="leading" id="iXB-ai-5Vv"/>
+                                                    <constraint firstItem="qiZ-hg-pZo" firstAttribute="top" secondItem="5L1-FW-r7V" secondAttribute="top" id="poW-Uh-Sze"/>
+                                                    <constraint firstAttribute="trailing" secondItem="qiZ-hg-pZo" secondAttribute="trailing" id="qmV-Me-md9"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="hxk-Ao-6UR" firstAttribute="top" secondItem="L0O-Ia-8HQ" secondAttribute="top" id="KdX-0U-EbD"/>
+                                    <constraint firstAttribute="trailing" secondItem="hxk-Ao-6UR" secondAttribute="trailing" id="PRg-g2-8T5"/>
+                                    <constraint firstItem="hxk-Ao-6UR" firstAttribute="leading" secondItem="L0O-Ia-8HQ" secondAttribute="leading" id="SdN-tH-UDN"/>
+                                    <constraint firstAttribute="bottom" secondItem="hxk-Ao-6UR" secondAttribute="bottom" id="e0f-Jt-EVq"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uSq-i6-4Es">
+                                <rect key="frame" x="0.0" y="92" width="414" height="722"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uSq-i6-4Es" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Fd-dF-4gW"/>
+                            <constraint firstAttribute="bottom" secondItem="L0O-Ia-8HQ" secondAttribute="bottom" id="4gr-Zk-eiY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uSq-i6-4Es" secondAttribute="trailing" id="5bb-G7-nfm"/>
+                            <constraint firstItem="uSq-i6-4Es" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7a0-Hs-ysW"/>
+                            <constraint firstItem="qiZ-hg-pZo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.33" id="8JV-Dn-AIA"/>
+                            <constraint firstItem="L0O-Ia-8HQ" firstAttribute="top" secondItem="uSq-i6-4Es" secondAttribute="bottom" id="DTH-Ns-PMd"/>
+                            <constraint firstItem="L0O-Ia-8HQ" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0915179" id="VOF-oO-ee4"/>
+                            <constraint firstItem="u8I-Pe-Xre" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.33" id="cBc-ej-N1f"/>
+                            <constraint firstItem="AyK-sO-eYT" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.33" id="ks4-aT-fuJ"/>
+                            <constraint firstItem="L0O-Ia-8HQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sGt-LE-qlX"/>
+                            <constraint firstItem="L0O-Ia-8HQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uah-pj-abr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="QKg-e7-BCX"/>
+                    <connections>
+                        <outlet property="tblView" destination="uSq-i6-4Es" id="nmO-gg-3ut"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-47.826086956521742" y="-678.34821428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="v0K-Nk-qMb">
+            <objects>
+                <navigationController id="fuP-bc-0Dy" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hhb-lu-6AO">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2Tu-mq-6jx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaG-Sg-a3N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-833" y="-678"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="film" catalog="system" width="128" height="93"/>
+        <image name="play.tv" catalog="system" width="128" height="95"/>
+        <image name="tv" catalog="system" width="128" height="95"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
