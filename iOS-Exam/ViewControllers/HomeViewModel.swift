@@ -14,6 +14,10 @@ class BaseViewModel: NSObject {
     init(coordinator: CoordinatorProtocol) {
         self.coordinator = coordinator
     }
+    
+    func goToVc(vc: UIViewController, navigate: NavigationType = .Push, shouldAnimate: Bool = true) {
+        coordinator?.goToVC(vc: vc, navigate: navigate, shouldAnimate: shouldAnimate)
+    }
 }
 
 class HomeViewModel: BaseViewModel {
@@ -27,6 +31,10 @@ class HomeViewModel: BaseViewModel {
         self.omdbData = omdbData
         
         super.init(coordinator: coordinator)
+    }
+    
+    func movies() -> [Movie] {
+        return movieResult.value?.movies?.array as? [Movie] ?? []
     }
     
     func getMovies() {

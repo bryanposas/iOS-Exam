@@ -8,18 +8,15 @@
 import UIKit
 
 enum NavigationType {
-    case Push,
-         Present
+    case Push, Present
 }
 
 protocol CoordinatorProtocol: AnyObject {
     func goToVC(vc: UIViewController, navigate: NavigationType, shouldAnimate: Bool)
-    var window: UIWindow! { get }
 }
 
 class Coordinator: NSObject, CoordinatorProtocol {
     var navigationController: UINavigationController!
-    var window: UIWindow!
     
     override init() {
         super.init()
@@ -28,16 +25,22 @@ class Coordinator: NSObject, CoordinatorProtocol {
     }
     
     private func boostrap() {
-        self.navigationController = UINavigationController()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            if let vc = DependencyService.shared.resolve(HomeViewController.self) {
+                
+                self.navigationController = vc.navigationController
+                
+                let newWindow = UIWindow(frame: UIScreen.main.bounds)
+                newWindow.makeKeyAndVisible()
+                newWindow.rootViewController = navigationController
+                navigationController.delegate = self
+                
+                appDelegate.window = newWindow
+                
+                goToVC(vc: vc)
+            }
+        }
         
-        let newWindow = UIWindow(frame: UIScreen.main.bounds)
-        newWindow.makeKeyAndVisible()
-        newWindow.rootViewController = navigationController
-        self.window = newWindow
-        
-        navigationController.delegate = self
-        
-        goToVC(vc: HomeViewController.instantiate())
     }
     
     /// Navigates to the passed view controller. Parameter action and actionValue are used for deep linking
@@ -73,5 +76,12 @@ extension Coordinator: UINavigationControllerDelegate {
         if navigationController.viewControllers.contains(toViewController) {
             return
         }
+    }
+}
+
+extension Coordinator {
+    func goToHomeViewController() {
+//        guard let vc = DependencyService.shared.resolve(HomeViewController.self) else { return }
+        goToVC(vc: HomeViewController.instantiate())
     }
 }

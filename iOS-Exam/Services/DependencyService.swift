@@ -11,10 +11,12 @@ import SwinjectAutoregistration
 import SwinjectStoryboard
 
 class DependencyService: NSObject {
-    private let container = Container()
+    static let shared = DependencyService()
     
-    var resolver: Container {
-        return container
+    let container = Container()
+    
+    func resolve<Service>(_ serviceType: Service.Type) -> Service? {
+        return container.resolve(serviceType)
     }
     
     func start() {
@@ -28,6 +30,7 @@ class DependencyService: NSObject {
     }
     
     private func registerViewControllerAndViewModel() {
+        registerHomeViewModel()
         registerHomeViewController()
     }
     
@@ -38,7 +41,6 @@ class DependencyService: NSObject {
     }
     
     private func registerHomeViewController() {
-        registerHomeViewModel()
         container.storyboardInitCompleted(HomeViewController.self) { _ , controller in
             controller.injectViewModel(self.container.resolve(HomeViewModel.self)!)
         }

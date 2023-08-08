@@ -18,12 +18,19 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bootstrap()
     }
     
     func injectViewModel(_ viewModel: HomeViewModel) {
         self.viewModel = viewModel
         
-        bootstrap()
+        _ = viewModel.movieResult.receive(on: DispatchQueue.main).observeNext(with: { movieResult in
+            if movieResult != nil {
+                self.tblView.reloadData()
+            }
+        })
+        
+        refreshMovies()
     }
 
     // MARK: Button actions
@@ -50,16 +57,10 @@ class HomeViewController: BaseViewController {
     
     // MARK: Private Methods
     private func bootstrap() {
-        _ = viewModel.movieResult.receive(on: DispatchQueue.main).observeNext(with: { movieResult in
-            if movieResult != nil {
-                self.tblView.reloadData()
-            }
-        })
-        
-        viewModel.getMovies()
-        
         tblView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
+        
+        tblView.register(MovieCell.self, forCellReuseIdentifier: "MovieCellIdentifier")
     }
     
     @objc private func refreshControlAction() {
@@ -73,14 +74,18 @@ class HomeViewController: BaseViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.movies().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let movieCell = tableView.dequeueReusableCell(withIdentifier: "MovieCellIdentifier", for: indexPath) as! MovieCell
+        let movie = viewModel.movies()[indexPath.row]
+        movieCell.setup(withPosterImageUri: movie.poster_path, title: movie.title, releaseDate: movie.release_date, rating: movie.vote_average, overview: movie.overview)
+        
+        return movieCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+//        viewModel.goToVc(vc: )
     }
 }

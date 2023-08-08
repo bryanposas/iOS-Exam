@@ -16,6 +16,7 @@ public class Movie: NSManagedObject, Codable {
         case backdrop_path
         case budget
         case genres
+        case genre_ids
         case homepage
         case id
         case overview
@@ -70,7 +71,10 @@ public class Movie: NSManagedObject, Codable {
             revenue = try container.decodeIfPresent(Int64.self, forKey: .revenue) ?? 0
             status = try container.decodeIfPresent(String.self, forKey: .status)
             tagline = try container.decodeIfPresent(String.self, forKey: .tagline)
-            genres = NSOrderedSet(array: try container.decodeIfPresent([Genre].self, forKey: .genres) ?? [])
+            
+            let genreIdsFromMovieResult = try container.decodeIfPresent([Genre].self, forKey: .genre_ids) ?? []
+            let genresFromMovieDetail = try container.decodeIfPresent([Genre].self, forKey: .genres)
+            genres = NSOrderedSet(array: genresFromMovieDetail ?? genreIdsFromMovieResult)
         } catch let error {
             print(error.localizedDescription)
         }

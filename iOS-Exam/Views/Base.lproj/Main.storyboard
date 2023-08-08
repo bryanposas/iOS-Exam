@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="p6d-sV-hvH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -136,7 +136,7 @@
         <!--Base Navigation Controller-->
         <scene sceneID="5W4-0k-r39">
             <objects>
-                <navigationController id="p6d-sV-hvH" customClass="BaseNavigationController" customModule="iOS_Exam" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BaseNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="p6d-sV-hvH" customClass="BaseNavigationController" customModule="iOS_Exam" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qaZ-OF-fc1">
                         <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
